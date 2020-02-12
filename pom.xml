@@ -41,6 +41,11 @@
 			<name>openHAB repository</name>
 			<url>https://dl.bintray.com/openhab/mvn</url>
 		</repository>
+		<repository>
+			<id>sympower-public</id>
+			<name>Sympower repository</name>
+			<url>https://extranet.sympower.net/nexus/repository/maven-public/</url>
+		</repository>
 	</repositories>
 
 	<!-- dependency versions here should match roughly the runtime environment of openHAB2 -->
@@ -58,9 +63,9 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
+			<groupId>org.slf4j.micro</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<version>1.7.2</version>
+			<version>1.7.22-8</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
