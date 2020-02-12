@@ -73,7 +73,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
             try {
                 m_DigitalInputs.setElementAt(di, ref);
             } catch (IndexOutOfBoundsException ex) {
-                throw new IllegalAddressException();
+                throw new IllegalAddressException("Address: " + ref);
             }
         }
     }// setDigitalIn
@@ -84,7 +84,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
         try {
             return (DigitalIn) m_DigitalInputs.elementAt(ref);
         } catch (IndexOutOfBoundsException ex) {
-            throw new IllegalAddressException();
+            throw new IllegalAddressException("Address: " + ref);
         }
     }// getDigitalIn
 
@@ -127,7 +127,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
             try {
                 m_DigitalOutputs.setElementAt(_do, ref);
             } catch (IndexOutOfBoundsException ex) {
-                throw new IllegalAddressException();
+                throw new IllegalAddressException("Address: " + ref);
             }
         }
     }// setDigitalOut
@@ -137,7 +137,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
         try {
             return (DigitalOut) m_DigitalOutputs.elementAt(ref);
         } catch (IndexOutOfBoundsException ex) {
-            throw new IllegalAddressException();
+            throw new IllegalAddressException("Address: " + ref);
         }
     }// getDigitalOut
 
@@ -180,7 +180,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
             try {
                 m_InputRegisters.setElementAt(reg, ref);
             } catch (IndexOutOfBoundsException ex) {
-                throw new IllegalAddressException();
+                throw new IllegalAddressException("Address: " + ref);
             }
         }
     }// setInputRegister
@@ -191,7 +191,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
         try {
             return (InputRegister) m_InputRegisters.elementAt(ref);
         } catch (IndexOutOfBoundsException ex) {
-            throw new IllegalAddressException();
+            throw new IllegalAddressException("Address: " + ref);
         }
     }// getInputRegister
 
@@ -234,7 +234,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
             try {
                 m_Registers.setElementAt(reg, ref);
             } catch (IndexOutOfBoundsException ex) {
-                throw new IllegalAddressException();
+                throw new IllegalAddressException("Address: " + ref);
             }
         }
     }// setRegister
@@ -245,7 +245,7 @@ public class SimpleProcessImage implements ProcessImageImplementation {
         try {
             return (Register) m_Registers.elementAt(ref);
         } catch (IndexOutOfBoundsException ex) {
-            throw new IllegalAddressException();
+            throw new IllegalAddressException("Address: " + ref);
         }
     }// getRegister
 
