@@ -244,6 +244,7 @@ public class ModbusTCPTransaction implements ModbusTransaction {
             }
 
         } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
             throw new ModbusIOException("Thread acquiring lock was interrupted.");
         } finally {
             // Finally: close connection if reconnecting
