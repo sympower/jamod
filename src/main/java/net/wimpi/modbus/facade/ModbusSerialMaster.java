@@ -78,8 +78,10 @@ public class ModbusSerialMaster {
             m_ReadMultipleRegistersRequest = new ReadMultipleRegistersRequest();
             m_WriteSingleRegisterRequest = new WriteSingleRegisterRequest();
             m_WriteMultipleRegistersRequest = new WriteMultipleRegistersRequest();
+        } catch (RuntimeException e) {
+            throw e;
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }// constructor
 

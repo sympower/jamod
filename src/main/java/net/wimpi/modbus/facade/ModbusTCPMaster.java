@@ -81,7 +81,7 @@ public class ModbusTCPMaster {
             m_WriteMultipleRegistersRequest = new WriteMultipleRegistersRequest();
 
         } catch (UnknownHostException e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException(e);
         }
     }// constructor
 
