@@ -64,7 +64,7 @@ public class ModbusTCPTransport implements ModbusTransport {
             setSocket(socket);
         } catch (IOException ex) {
             final String errMsg = "Socket invalid";
-            logger.debug(errMsg);
+            logger.error(errMsg, ex);
             // @commentstart@
             throw new IllegalStateException(errMsg);
             // @commentend@
@@ -99,7 +99,9 @@ public class ModbusTCPTransport implements ModbusTransport {
             m_Output.flush();
             // write more sophisticated exception handling
         } catch (Exception ex) {
-            throw new ModbusIOException(String.format("I/O exception - failed to write: %s", ex.getMessage()));
+            final String errMsg = "I/O exception - failed to write";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(String.format("%s: %s", errMsg, ex.getMessage()));
         }
     }// write
 
@@ -157,13 +159,16 @@ public class ModbusTCPTransport implements ModbusTransport {
              *
              */
         } catch (EOFException eoex) {
+            logger.trace("readRequest", eoex);
             throw new ModbusIOException(true);
         } catch (SocketException sockex) {
             // connection reset by peer, also EOF
+            logger.trace("readRequest", sockex);
             throw new ModbusIOException(true);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new ModbusIOException("I/O exception - failed to read.");
+            final String errMsg = "I/O exception - failed to read request";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(errMsg);
         }
     }// readRequest
 
@@ -223,9 +228,9 @@ public class ModbusTCPTransport implements ModbusTransport {
              * return response;
              */
         } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new ModbusIOException(
-                    String.format("I/O exception: %s %s", ex.getClass().getSimpleName(), ex.getMessage()));
+            final String errMsg = "I/O exception - failed to read response";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(errMsg);
         }
     }// readResponse
 

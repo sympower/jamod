@@ -121,10 +121,9 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
         try {
             m_PortIdentifyer = CommPortIdentifier.getPortIdentifier(m_Parameters.getPortName());
         } catch (NoSuchPortException e) {
-            final String errMsg = "Could not get port identifier, maybe insufficient permissions. " + e.getMessage();
-            logger.error("Could not get port identifier, maybe insufficient permissions. {}: {}",
-                    e.getClass().getName(), e.getMessage());
-            throw new Exception(errMsg);
+            final String errMsg = "Could not get port identifier, maybe insufficient permissions";
+            logger.error(errMsg, e);
+            throw new Exception(errMsg + ": " + e.getMessage());
         }
         logger.trace("Got Port Identifier");
 
@@ -132,9 +131,9 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
         try {
             m_SerialPort = m_PortIdentifyer.open("Modbus Serial Master", 30000);
         } catch (PortInUseException e) {
-            String msg = "open port failed: " + e.getMessage();
-            logger.error("open port failed: {}: {}", e.getClass().getName(), e.getMessage());
-            throw new Exception(msg);
+            String errMsg = "open port failed";
+            logger.error(errMsg, e);
+            throw new Exception(errMsg + ": " + e.getMessage());
         }
         logger.trace("Got Serial Port");
 
@@ -144,7 +143,7 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
         } catch (Exception e) {
             // ensure it is closed
             m_SerialPort.close();
-            logger.error("parameter setup failed. {}: {}", e.getClass().getName(), e.getMessage());
+            logger.error("parameter setup failed", e);
             throw e;
         }
 
@@ -168,9 +167,9 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
             // m_SerialPort.getOutputStream());
         } catch (IOException e) {
             m_SerialPort.close();
-            String msg = "Error opening i/o streams: " + e.getMessage();
-            logger.error("Error opening i/o streams. {}: {}", e.getClass().getName(), e.getMessage());
-            throw new Exception(msg);
+            String errMsg = "Error opening i/o streams";
+            logger.error(errMsg, e);
+            throw new Exception(errMsg + ": " + e.getMessage());
         }
         logger.trace("i/o Streams prepared");
 
@@ -179,9 +178,9 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
             m_SerialPort.addEventListener(this);
         } catch (TooManyListenersException e) {
             m_SerialPort.close();
-            final String errMsg = "too many listeners added:" + e.getMessage();
-            logger.error("too many listeners added. {}: {}", e.getClass().getName(), e.getMessage());
-            throw new Exception(errMsg);
+            final String errMsg = "too many listeners";
+            logger.error(errMsg, e);
+            throw new Exception(errMsg + ": " + e.getMessage());
         }
 
         // Set notifyOnBreakInterrup to allow event driven break handling.
@@ -232,10 +231,9 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
             m_Parameters.setStopbits(oldStopbits);
             m_Parameters.setParity(oldParity);
             final String errMsg = "Unsupported parameter";
-            logger.debug("{} failed to set up one of [baudRate, dataBits, stopBits, parity]: {}", errMsg,
-                    e.getMessage());
+            logger.error("{}, failed to set up one of [baudRate, dataBits, stopBits, parity]", errMsg, e);
 
-            throw new Exception(errMsg);
+            throw new Exception(errMsg + ": " + e.getMessage());
         }
 
         // Set flow control.
@@ -243,9 +241,9 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
             m_SerialPort.setFlowControlMode(m_Parameters.getFlowControlIn() | m_Parameters.getFlowControlOut());
         } catch (UnsupportedCommOperationException e) {
             final String errMsg = "Unsupported flow control";
-            logger.debug("{}: {}", errMsg, e.getMessage());
+            logger.error(errMsg, e);
 
-            throw new Exception(errMsg);
+            throw new Exception(errMsg + ": " + e.getMessage());
         }
     }// setConnectionParameters
 

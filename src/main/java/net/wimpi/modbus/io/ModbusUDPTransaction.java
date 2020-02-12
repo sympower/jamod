@@ -16,6 +16,9 @@
 
 package net.wimpi.modbus.io;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.wimpi.modbus.Modbus;
 import net.wimpi.modbus.ModbusException;
 import net.wimpi.modbus.ModbusIOException;
@@ -36,6 +39,8 @@ import net.wimpi.modbus.util.Mutex;
  * @version @version@ (@date@)
  */
 public class ModbusUDPTransaction implements ModbusTransaction {
+
+    private static final Logger logger = LoggerFactory.getLogger(ModbusUDPTransaction.class);
 
     // class attributes
     private static AtomicCounter c_TransactionID = new AtomicCounter(Modbus.DEFAULT_TRANSACTION_ID);
@@ -172,7 +177,9 @@ public class ModbusUDPTransaction implements ModbusTransaction {
                     m_Terminal.activate();
                     m_IO = m_Terminal.getModbusTransport();
                 } catch (Exception ex) {
-                    throw new ModbusIOException("Activation failed.");
+                    final String errMsg = "Activation failed.";
+                    logger.error(errMsg, ex);
+                    throw new ModbusIOException(errMsg);
 
                 }
             }

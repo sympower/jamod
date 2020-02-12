@@ -93,7 +93,9 @@ public class ModbusBINTransport extends ModbusSerialTransport {
                 readEcho(len + 4);
             }
         } catch (Exception ex) {
-            throw new ModbusIOException("I/O failed to write");
+            final String errMsg = "I/O exception - failed to write";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(String.format("%s: %s", errMsg, ex.getMessage()));
         }
     }// writeMessage
 
@@ -143,9 +145,9 @@ public class ModbusBINTransport extends ModbusSerialTransport {
             } while (!done);
             return request;
         } catch (Exception ex) {
-            final String errMsg = "failed to read";
-            logger.debug("{}: {}", errMsg, ex.getMessage());
-            throw new ModbusIOException("I/O exception - " + errMsg);
+            final String errMsg = "I/O exception - failed to read";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(String.format("%s: %s", errMsg, ex.getMessage()));
         }
 
     }// readRequest
@@ -200,10 +202,9 @@ public class ModbusBINTransport extends ModbusSerialTransport {
             } while (!done);
             return response;
         } catch (Exception ex) {
-            final String errMsg = "failed to read";
-            logger.debug("{}: {}", errMsg, ex.getMessage());
-            throw new ModbusIOException(
-                    String.format("I/O exception: %s %s", ex.getClass().getSimpleName(), ex.getMessage()));
+            final String errMsg = "I/O exception - failed to read";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(String.format("%s: %s", errMsg, ex.getMessage()));
         } finally {
             m_CommPort.disableReceiveThreshold();
         }

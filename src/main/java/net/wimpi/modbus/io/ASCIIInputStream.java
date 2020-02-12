@@ -87,7 +87,7 @@ public class ASCIIInputStream extends FilterInputStream {
                 } catch (NumberFormatException ex) {
                     // malformed stream
                     final String errMsg = "Malformed Stream - Wrong Characters";
-                    logger.debug("{}: {}", errMsg, sbuf.toString());
+                    logger.debug("{}: {}", errMsg, sbuf.toString(), ex);
                     throw new IOException(errMsg);
                 }
             }
