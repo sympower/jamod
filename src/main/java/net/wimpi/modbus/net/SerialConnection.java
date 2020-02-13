@@ -230,8 +230,8 @@ public class SerialConnection implements SerialPortEventListener, ModbusSlaveCon
             m_Parameters.setDatabits(oldDatabits);
             m_Parameters.setStopbits(oldStopbits);
             m_Parameters.setParity(oldParity);
-            final String errMsg = "Unsupported parameter";
-            logger.error("{}, failed to set up one of [baudRate, dataBits, stopBits, parity]", errMsg, e);
+            final String errMsg = "Unsupported parameter, failed to set up one of [baudRate, dataBits, stopBits, parity]";
+            logger.error(errMsg, e);
 
             throw new Exception(errMsg + ": " + e.getMessage());
         }
