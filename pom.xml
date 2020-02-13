@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.sympower</groupId>
 	<artifactId>jamod</artifactId>
 	<packaging>jar</packaging>
-	<version>1.2.3-1-SNAPSHOT</version>
+	<version>1.2.3-1</version>
 	<name>jamod</name>
 	<url>http://jamod.sourceforge.net</url>
 	<description>
@@ -238,7 +237,7 @@
 		<url>https://github.com/sympower/jamod</url>
 		<connection>git@github.com:sympower/jamod.git</connection>
 		<developerConnection>scm:git:git@github.com:sympower/jamod.git</developerConnection>
-		<tag>1.2.3.OH-1</tag>
+		<tag>jamod-1.2.3-1</tag>
 	</scm>
 
 	<distributionManagement>
