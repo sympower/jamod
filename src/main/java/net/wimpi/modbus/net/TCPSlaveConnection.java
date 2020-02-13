@@ -67,9 +67,9 @@ public class TCPSlaveConnection {
             setSocket(socket);
         } catch (IOException ex) {
             final String errMsg = "Socket invalid";
-            logger.debug(errMsg);
+            logger.error(errMsg, ex);
             // @commentstart@
-            throw new IllegalStateException(errMsg);
+            throw new IllegalStateException(errMsg + ": " + ex.getMessage());
             // @commentend@
         }
     }// constructor

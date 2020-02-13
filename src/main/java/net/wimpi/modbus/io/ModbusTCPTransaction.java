@@ -187,7 +187,9 @@ public class ModbusTCPTransaction implements ModbusTransaction {
                     m_Connection.connect();
                     m_IO = m_Connection.getModbusTransport();
                 } catch (Exception ex) {
-                    throw new ModbusIOException("Connecting failed.");
+                    final String errMsg = "Connecting failed.";
+                    logger.error(errMsg, ex);
+                    throw new ModbusIOException(errMsg);
                 }
             }
 
@@ -242,6 +244,7 @@ public class ModbusTCPTransaction implements ModbusTransaction {
             }
 
         } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
             throw new ModbusIOException("Thread acquiring lock was interrupted.");
         } finally {
             // Finally: close connection if reconnecting

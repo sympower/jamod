@@ -19,6 +19,9 @@ package net.wimpi.modbus.io;
 import java.io.IOException;
 import java.io.InterruptedIOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.wimpi.modbus.Modbus;
 import net.wimpi.modbus.ModbusIOException;
 import net.wimpi.modbus.msg.ModbusMessage;
@@ -34,6 +37,8 @@ import net.wimpi.modbus.net.UDPTerminal;
  * @version 1.0 (29/04/2002)
  */
 public class ModbusUDPTransport implements ModbusTransport {
+
+    private static final Logger logger = LoggerFactory.getLogger(ModbusUDPTransport.class);
 
     // instance attributes
     private UDPTerminal m_Terminal;
@@ -67,7 +72,9 @@ public class ModbusUDPTransport implements ModbusTransport {
                 m_Terminal.sendMessage(m_ByteOut.toByteArray());
             }
         } catch (Exception ex) {
-            throw new ModbusIOException("I/O exception - failed to write.");
+            final String errMsg = "I/O exception - failed to write";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(errMsg);
         }
     }// write
 
@@ -85,7 +92,9 @@ public class ModbusUDPTransport implements ModbusTransport {
             }
             return req;
         } catch (Exception ex) {
-            throw new ModbusIOException("I/O exception - failed to read.");
+            final String errMsg = "I/O exception - failed to read";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(errMsg);
         }
     }// readRequest
 
@@ -104,10 +113,13 @@ public class ModbusUDPTransport implements ModbusTransport {
             }
             return res;
         } catch (InterruptedIOException ioex) {
-            throw new ModbusIOException("Socket timed out.");
+            final String errMsg = "Socket timed out";
+            logger.trace(errMsg, ioex);
+            throw new ModbusIOException(errMsg);
         } catch (Exception ex) {
-            ex.printStackTrace();
-            throw new ModbusIOException("I/O exception - failed to read.");
+            final String errMsg = "I/O exception - failed to read";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(errMsg);
         }
     }// readResponse
 

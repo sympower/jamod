@@ -84,7 +84,9 @@ public class ModbusRTUTransport extends ModbusSerialTransport {
             }
 
         } catch (Exception ex) {
-            throw new ModbusIOException("I/O failed to write");
+            final String errMsg = "I/O exception - failed to write";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(String.format("%s: %s", errMsg, ex.getMessage()));
         }
 
     }// writeMessage
@@ -166,11 +168,10 @@ public class ModbusRTUTransport extends ModbusSerialTransport {
             } while (!done);
             return response;
         } catch (Exception ex) {
-            final String errMsg = "failed to read";
             logger.error("Last request: {}", ModbusUtil.toHex(lastRequest));
-            logger.error("{}: {}", errMsg, ex.getMessage());
-            throw new ModbusIOException(
-                    String.format("I/O exception: %s %s", ex.getClass().getSimpleName(), ex.getMessage()));
+            final String errMsg = "I/O exception - failed to read";
+            logger.error(errMsg, ex);
+            throw new ModbusIOException(String.format("%s: %s", errMsg, ex.getMessage()));
         } finally {
             m_CommPort.disableReceiveThreshold();
         }
@@ -272,9 +273,11 @@ public class ModbusRTUTransport extends ModbusSerialTransport {
                     m_CommPort.disableReceiveThreshold();
                     break;
             }
-        } catch (IOException e) {
+        } catch (IOException ex) {
             m_CommPort.disableReceiveThreshold();
-            throw new IOException("getResponse serial port exception");
+            final String errMsg = "getResponse serial port exception - failed to read";
+            logger.error(errMsg, ex);
+            throw new IOException(String.format("%s: %s", errMsg, ex.getMessage()));
         }
     }// getResponse
 

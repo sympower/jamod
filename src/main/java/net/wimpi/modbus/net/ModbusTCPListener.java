@@ -22,6 +22,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.nio.channels.Channel;
+import java.nio.channels.ServerSocketChannel;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -160,13 +162,20 @@ public class ModbusTCPListener implements Runnable {
     @Override
     public void run() {
         try {
+            Channel inheritedChannel = System.inheritedChannel();
+            if (inheritedChannel instanceof ServerSocketChannel) {
+                ServerSocketChannel serverSocketChannel = (ServerSocketChannel) inheritedChannel;
+                m_ServerSocket = serverSocketChannel.socket();
+            }
             /*
              * A server socket is opened with a connectivity queue of a size specified
              * in int floodProtection. Concurrent login handling under normal circumstances
              * should be allright, denial of service attacks via massive parallel
              * program logins can probably be prevented.
              */
-            m_ServerSocket = new ServerSocket(m_Port, m_FloodProtection, m_Address);
+            if (m_ServerSocket == null) {
+                m_ServerSocket = new ServerSocket(m_Port, m_FloodProtection, m_Address);
+            }
             logger.debug("Listenening to {} (Port {})", m_ServerSocket.toString(), m_Port);
 
             // Infinite loop, taking care of resources in case of a lot of parallel logins

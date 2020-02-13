@@ -226,6 +226,7 @@ public class ModbusSerialTransaction implements ModbusTransaction {
                 checkValidity();
             }
         } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
             throw new ModbusIOException("Thread acquiring lock was interrupted.");
         } finally {
             m_TransactionLock.release();
