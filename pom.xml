@@ -36,11 +36,13 @@
 
 	<repositories>
 		<!-- extra repository for org.openhab.nrjavaserial -->
+		<!--
 		<repository>
 			<id>openhab</id>
 			<name>openHAB repository</name>
 			<url>https://dl.bintray.com/openhab/mvn</url>
 		</repository>
+		-->
 		<repository>
 			<id>sympower-public</id>
 			<name>Sympower repository</name>
