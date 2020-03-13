@@ -70,7 +70,13 @@ public class TCPConnectionHandler implements Runnable {
                 if (ModbusCoupler.getReference().getProcessImage() == null) {
                     response = request.createExceptionResponse(Modbus.ILLEGAL_FUNCTION_EXCEPTION);
                 } else {
-                    response = request.createResponse();
+                    try {
+                        response = request.createResponse();
+                    }
+                    catch (Exception e) {
+                        logger.error("Error while processing request", e);
+                        response = request.createExceptionResponse(Modbus.SLAVE_DEVICE_FAILURE);
+                    }
                 }
                 logger.debug("Request (transaction id {}): {}", request.getTransactionID(), request.getHexMessage());
                 logger.debug("Response (transaction id {}): {}", response.getTransactionID(), response.getHexMessage());
@@ -80,13 +86,13 @@ public class TCPConnectionHandler implements Runnable {
         } catch (ModbusIOException ex) {
             if (!ex.isEOF()) {
                 // other troubles, output for debug
-                ex.printStackTrace();
+                logger.debug("IO error while processing request", ex);
             }
         } finally {
             try {
                 m_Connection.close();
             } catch (Exception ex) {
-                // ignore
+                logger.trace("Error while closing connection", ex);
             }
 
         }

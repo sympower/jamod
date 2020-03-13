@@ -143,6 +143,13 @@ public interface Modbus {
     public static final int ILLEGAL_VALUE_EXCEPTION = 3;
 
     /**
+     * Defines the Modbus slave exception type <tt>slave device failure</tt>.
+     * This exception code indicates that a fault occurred in the slave device while
+     * processing the request.
+     */
+    public static final int SLAVE_DEVICE_FAILURE = 4;
+
+    /**
      * Defines the default port number of Modbus
      * (=<tt>502</tt>).
      */
