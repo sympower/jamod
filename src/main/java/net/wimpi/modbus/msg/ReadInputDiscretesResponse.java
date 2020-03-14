@@ -149,4 +149,11 @@ public final class ReadInputDiscretesResponse extends ModbusResponse {
         setDataLength(count + 1);
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", bitCount=").append(m_BitCount);
+        sb.append(", discretes=").append(m_Discretes);
+    }
+
 }// class ReadInputDiscretesResponse

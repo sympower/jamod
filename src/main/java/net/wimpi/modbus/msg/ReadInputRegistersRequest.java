@@ -159,4 +159,11 @@ public final class ReadInputRegistersRequest extends ModbusRequest {
         m_WordCount = din.readUnsignedShort();
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", wordCount=").append(m_WordCount);
+    }
+
 }// class ReadInputRegistersRequest

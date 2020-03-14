@@ -240,4 +240,20 @@ public abstract class ModbusMessageImpl implements ModbusMessage {
         return ModbusUtil.toHex(this);
     }// getHexMessage
 
+    protected void appendFieldsToString(StringBuilder sb) {
+        sb.append("transactionID=").append(m_TransactionID);
+        sb.append(", protocolID=").append(m_ProtocolID);
+        sb.append(", dataLength=").append(m_DataLength);
+        sb.append(", unitID=").append(m_UnitID);
+        sb.append(", functionCode=").append(m_FunctionCode);
+        sb.append(", headless=").append(m_Headless);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder(256);
+        sb.append(getClass().getSimpleName()).append(": ");
+        appendFieldsToString(sb);
+        return sb.toString();
+    }
 }// class ModbusMessageImpl

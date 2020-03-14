@@ -176,6 +176,13 @@ public final class ReadInputDiscretesRequest extends ModbusRequest {
         m_BitCount = din.readUnsignedShort();
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", bitCount=").append(m_BitCount);
+    }
+
     /*
      * protected void assembleData() throws IOException {
      * m_DataOut.writeShort(m_Reference);

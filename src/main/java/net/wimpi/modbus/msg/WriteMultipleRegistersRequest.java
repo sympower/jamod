@@ -19,6 +19,7 @@ package net.wimpi.modbus.msg;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.Arrays;
 
 import net.wimpi.modbus.Modbus;
 import net.wimpi.modbus.ModbusCoupler;
@@ -277,5 +278,12 @@ public final class WriteMultipleRegistersRequest extends ModbusRequest {
             m_NonWordDataHandler.readData(din, m_Reference, wc);
         }
     }// readData
+
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", registers=").append(Arrays.toString(m_Registers));
+    }
 
 }// class WriteMultipleRegistersRequest

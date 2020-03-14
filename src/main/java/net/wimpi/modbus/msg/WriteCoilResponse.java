@@ -137,4 +137,11 @@ public final class WriteCoilResponse extends ModbusResponse {
         setDataLength(4);
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", coil=").append(m_Coil);
+    }
+
 }// class WriteCoilResponse
