@@ -65,6 +65,7 @@ public class TCPConnectionHandler implements Runnable {
                 // 1. read the request
                 ModbusRequest request = m_Transport.readRequest();
                 ModbusResponse response = null;
+                logger.debug("Request (transaction id {}): {}", request.getTransactionID(), request.getHexMessage());
 
                 // test if Process image exists
                 if (ModbusCoupler.getReference().getProcessImage() == null) {
@@ -74,13 +75,12 @@ public class TCPConnectionHandler implements Runnable {
                         response = request.createResponse();
                     }
                     catch (Exception e) {
-                        logger.error("Error while processing request", e);
+                        logger.error("Error while processing request {}", request, e);
                         response = request.createExceptionResponse(Modbus.SLAVE_DEVICE_FAILURE);
                     }
                 }
-                logger.debug("Request (transaction id {}): {}", request.getTransactionID(), request.getHexMessage());
-                logger.debug("Response (transaction id {}): {}", response.getTransactionID(), response.getHexMessage());
 
+                logger.debug("Response (transaction id {}): {}", response.getTransactionID(), response.getHexMessage());
                 m_Transport.writeMessage(response);
             } while (true);
         } catch (ModbusIOException ex) {
