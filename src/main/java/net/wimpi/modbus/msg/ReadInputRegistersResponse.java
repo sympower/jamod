@@ -178,7 +178,7 @@ public final class ReadInputRegistersResponse extends ModbusResponse {
     protected void appendFieldsToString(StringBuilder sb) {
         super.appendFieldsToString(sb);
         sb.append(", byteCount=").append(m_ByteCount);
-        sb.append(", registers=").append(Arrays.asList(m_Registers));
+        sb.append(", registers=").append(Arrays.toString(m_Registers));
     }
 
 }// class ReadInputRegistersResponse
