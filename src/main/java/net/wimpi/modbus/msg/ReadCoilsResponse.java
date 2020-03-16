@@ -137,4 +137,10 @@ public final class ReadCoilsResponse extends ModbusResponse {
         setDataLength(count + 1);
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", coils=").append(m_Coils);
+    }
+
 }// class ReadCoilsResponse

@@ -237,4 +237,11 @@ public final class WriteMultipleCoilsRequest extends ModbusRequest {
         setDataLength(count + 5);
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", coils=").append(m_Coils);
+    }
+
 }// class WriteMultipleCoilsRequest

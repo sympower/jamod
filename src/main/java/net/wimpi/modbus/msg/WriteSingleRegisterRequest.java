@@ -159,4 +159,11 @@ public final class WriteSingleRegisterRequest extends ModbusRequest {
                 din.readByte());
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", register=").append(m_Register);
+    }
+
 }// class WriteSingleRegisterRequest

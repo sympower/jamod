@@ -91,4 +91,10 @@ public class ExceptionResponse extends ModbusResponse {
         m_ExceptionCode = din.readUnsignedByte();
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", exceptionCode=").append(m_ExceptionCode);
+    }
+
 }// ExceptionResponse

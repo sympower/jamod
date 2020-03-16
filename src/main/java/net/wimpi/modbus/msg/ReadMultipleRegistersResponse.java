@@ -19,6 +19,7 @@ package net.wimpi.modbus.msg;
 import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
+import java.util.Arrays;
 
 import net.wimpi.modbus.Modbus;
 import net.wimpi.modbus.ModbusCoupler;
@@ -171,5 +172,12 @@ public final class ReadMultipleRegistersResponse extends ModbusResponse {
         // update data length
         setDataLength(getByteCount() + 1);
     }// readData
+
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", byteCount=").append(m_ByteCount);
+        sb.append(", registers=").append(Arrays.toString(m_Registers));
+    }
 
 }// class ReadMultipleRegistersResponse

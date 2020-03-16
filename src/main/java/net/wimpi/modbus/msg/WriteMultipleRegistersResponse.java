@@ -133,4 +133,11 @@ public final class WriteMultipleRegistersResponse extends ModbusResponse {
         setDataLength(4);
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", wordCount=").append(m_WordCount);
+    }
+
 }// class WriteMultipleRegistersResponse

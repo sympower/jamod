@@ -173,4 +173,11 @@ public final class WriteCoilRequest extends ModbusRequest {
         din.readByte();
     }// readData
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", coil=").append(m_Coil);
+    }
+
 }// class WriteCoilRequest

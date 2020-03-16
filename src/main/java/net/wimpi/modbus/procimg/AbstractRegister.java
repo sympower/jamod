@@ -71,4 +71,9 @@ public abstract class AbstractRegister implements Register {
         }
     }// setValue
 
+    @Override
+    public String toString() {
+        return String.valueOf(getValue());
+    }
+
 }// class AbstractRegister

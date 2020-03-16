@@ -75,4 +75,9 @@ public abstract class SynchronizedAbstractRegister implements Register {
         return m_Register;
     }// toBytes
 
+    @Override
+    public String toString() {
+        return String.valueOf(getValue());
+    }
+
 }// class SynchronizedAbstractRegister

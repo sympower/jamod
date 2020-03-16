@@ -132,4 +132,11 @@ public final class WriteSingleRegisterResponse extends ModbusResponse {
      * }//readData
      */
 
+    @Override
+    protected void appendFieldsToString(StringBuilder sb) {
+        super.appendFieldsToString(sb);
+        sb.append(", reference=").append(m_Reference);
+        sb.append(", registerValue=").append(m_RegisterValue);
+    }
+
 }// class WriteSingleRegisterResponse
