@@ -19,6 +19,7 @@ package net.wimpi.modbus.io;
 import java.io.IOException;
 
 import net.wimpi.modbus.ModbusIOException;
+import net.wimpi.modbus.ModbusMessageSerializationException;
 import net.wimpi.modbus.msg.ModbusMessage;
 import net.wimpi.modbus.msg.ModbusRequest;
 import net.wimpi.modbus.msg.ModbusResponse;
@@ -51,6 +52,7 @@ public interface ModbusTransport {
      * @throws ModbusIOException data cannot be
      *             written properly to the raw output stream of
      *             this <tt>ModbusTransport</tt>.
+     * @throws ModbusMessageSerializationException if the message cannot be serialized into a byte array
      */
     public void writeMessage(ModbusMessage msg) throws ModbusIOException;
 
