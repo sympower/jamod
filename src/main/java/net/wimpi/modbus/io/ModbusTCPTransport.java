@@ -110,7 +110,7 @@ public class ModbusTCPTransport implements ModbusTransport {
 
     private byte[] serialize(ModbusMessage msg) throws IOException {
         try (
-                ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+                ByteArrayOutputStream buffer = new ByteArrayOutputStream(msg.getOutputLength());
                 DataOutputStream bufferOutputStream = new DataOutputStream(buffer)
         ) {
             msg.writeTo(bufferOutputStream);
