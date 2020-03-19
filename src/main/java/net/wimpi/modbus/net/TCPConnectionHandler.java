@@ -85,7 +85,7 @@ public class TCPConnectionHandler implements Runnable {
                     m_Transport.writeMessage(response);
                     logger.debug("Response (transaction id {}): {}", response.getTransactionID(), response.getHexMessage());
                 } catch (ModbusMessageSerializationException e) {
-                    logger.error("Error while serializing the response of request {}", request, e);
+                    logger.error("Error while serializing the response of request {}", request, e.getCause());
                     response = request.createExceptionResponse(Modbus.SLAVE_DEVICE_FAILURE);
                     m_Transport.writeMessage(response);
                 }
