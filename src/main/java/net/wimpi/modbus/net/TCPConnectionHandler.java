@@ -16,6 +16,7 @@
 
 package net.wimpi.modbus.net;
 
+import net.wimpi.modbus.ModbusMessageSerializationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,8 +81,15 @@ public class TCPConnectionHandler implements Runnable {
                     }
                 }
 
-                logger.debug("Response (transaction id {}): {}", response.getTransactionID(), response.getHexMessage());
-                m_Transport.writeMessage(response);
+                try {
+                    m_Transport.writeMessage(response);
+                    logger.debug("Response (transaction id {}): {}", response.getTransactionID(), response.getHexMessage());
+                } catch (ModbusMessageSerializationException e) {
+                    logger.error("Error while serializing the response of request {}", request, e.getCause());
+                    response = request.createExceptionResponse(Modbus.SLAVE_DEVICE_FAILURE);
+                    m_Transport.writeMessage(response);
+                }
+
             } while (true);
         } catch (ModbusIOException ex) {
             if (!ex.isEOF()) {

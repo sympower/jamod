@@ -18,6 +18,7 @@ package net.wimpi.modbus.io;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.EOFException;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.SocketException;
 
+import net.wimpi.modbus.ModbusMessageSerializationException;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -95,15 +97,29 @@ public class ModbusTCPTransport implements ModbusTransport {
     @Override
     public void writeMessage(ModbusMessage msg) throws ModbusIOException {
         try {
-            msg.writeTo(m_Output);
+            byte[] serializedMessage = serialize(msg);
+            m_Output.write(serializedMessage);
             m_Output.flush();
             // write more sophisticated exception handling
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             final String errMsg = "I/O exception - failed to write";
             logger.error(errMsg, ex);
             throw new ModbusIOException(String.format("%s: %s", errMsg, ex.getMessage()));
         }
     }// write
+
+    private byte[] serialize(ModbusMessage msg) throws IOException {
+        try (
+                ByteArrayOutputStream buffer = new ByteArrayOutputStream(msg.getOutputLength());
+                DataOutputStream bufferOutputStream = new DataOutputStream(buffer)
+        ) {
+            msg.writeTo(bufferOutputStream);
+            bufferOutputStream.flush();
+            return buffer.toByteArray();
+        } catch (RuntimeException e) {
+            throw new ModbusMessageSerializationException(e);
+        }
+    }
 
     @Override
     public ModbusRequest readRequest() throws ModbusIOException {
