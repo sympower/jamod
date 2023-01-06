@@ -104,10 +104,11 @@ public class TCPMasterConnection implements ModbusSlaveConnection {
      */
     public void close() {
         if (m_Connected) {
+            logger.debug("close()");
             try {
                 m_ModbusTransport.close();
             } catch (IOException ex) {
-                logger.debug("close()");
+                logger.debug("error while closing", ex);
             }
             m_Connected = false;
         }
