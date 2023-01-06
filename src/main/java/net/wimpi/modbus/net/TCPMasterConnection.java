@@ -50,7 +50,7 @@ public class TCPMasterConnection implements ModbusSlaveConnection {
     // private int m_Retries = Modbus.DEFAULT_RETRIES;
     private ModbusTCPTransport m_ModbusTransport;
 
-    private int m_ConnectTimeoutMillis;
+    private int m_ConnectTimeoutMillis = Modbus.DEFAULT_TIMEOUT;
 
     private static StandardToStringStyle toStringStyle = new StandardToStringStyle();
 
