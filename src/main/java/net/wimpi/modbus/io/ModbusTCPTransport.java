@@ -98,6 +98,8 @@ public class ModbusTCPTransport implements ModbusTransport {
     public void writeMessage(ModbusMessage msg) throws ModbusIOException {
         try {
             byte[] serializedMessage = serialize(msg);
+            // Drop any stale data from responses that were not handled (e.g. due to timeout)
+            m_Input.skip(m_Input.available());
             m_Output.write(serializedMessage);
             m_Output.flush();
             // write more sophisticated exception handling
