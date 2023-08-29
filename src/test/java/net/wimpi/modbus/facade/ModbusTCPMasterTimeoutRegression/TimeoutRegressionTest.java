@@ -27,7 +27,7 @@ public class TimeoutRegressionTest extends TestCase {
     listener.setPort(TEST_CLIENT_PORT);
     listener.start();
 
-    final ModbusTCPMaster modbusMaster = new ModbusTCPMaster("127.0.0.1", 12345);
+    final ModbusTCPMaster modbusMaster = new ModbusTCPMaster("127.0.0.1", TEST_CLIENT_PORT);
 
     modbusMaster.connect();
     SimpleRegister register = new SimpleRegister(123);
