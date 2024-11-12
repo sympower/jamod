@@ -44,7 +44,7 @@ public interface ModbusTransport {
     public void close() throws IOException;
 
     /**
-     * Writes a <tt<ModbusMessage</tt> to the
+     * Writes a <tt>ModbusMessage</tt> to the
      * output stream of this <tt>ModbusTransport</tt>.
      * <p>
      *
