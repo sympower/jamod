@@ -16,13 +16,12 @@
 
 package net.wimpi.modbus.net;
 
-import java.net.InetAddress;
-
-import org.apache.commons.lang.builder.StandardToStringStyle;
-import org.apache.commons.lang.builder.ToStringBuilder;
-
 import net.wimpi.modbus.Modbus;
 import net.wimpi.modbus.io.ModbusTransport;
+import org.apache.commons.lang3.builder.StandardToStringStyle;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.net.InetAddress;
 
 /**
  * Class that implements a UDPMasterConnection.

@@ -6,7 +6,7 @@ import net.wimpi.modbus.procimg.IllegalAddressException;
 import net.wimpi.modbus.procimg.InputRegister;
 import net.wimpi.modbus.procimg.ProcessImageImplementation;
 import net.wimpi.modbus.procimg.Register;
-import org.apache.commons.lang.NotImplementedException;
+import org.apache.commons.lang3.NotImplementedException;
 
 import java.util.HashMap;
 import java.util.LinkedList;
