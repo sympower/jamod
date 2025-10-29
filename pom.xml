@@ -1,181 +1,181 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>net.sympower</groupId>
-	<artifactId>jamod</artifactId>
-	<packaging>jar</packaging>
-	<version>1.2.3-7-SNAPSHOT</version>
-	<name>jamod</name>
-	<url>http://jamod.sourceforge.net</url>
-	<description>
-        jamod is an object oriented implementation of the Modbus protocol, realized 100% in Java. It allows to quickly
-        realize master and slave applications in various transport flavors (IP and serial).
-    </description>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.sympower</groupId>
+  <artifactId>jamod</artifactId>
+  <packaging>jar</packaging>
+  <version>1.2.3-7</version>
+  <name>jamod</name>
+  <url>http://jamod.sourceforge.net</url>
+  <description>
+    jamod is an object oriented implementation of the Modbus protocol, realized 100% in Java. It allows to quickly
+    realize master and slave applications in various transport flavors (IP and serial).
+  </description>
 
-	<licenses>
-		<license>
-			<name>Apache 2 Style License</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-			<comments>A business-friendly OSS license</comments>
-		</license>
-	</licenses>
+  <licenses>
+    <license>
+      <name>Apache 2 Style License</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>A business-friendly OSS license</comments>
+    </license>
+  </licenses>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-	</properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 
-	<repositories>
-		<!-- extra repository for org.openhab.nrjavaserial -->
-		<!--
-		<repository>
-			<id>openhab</id>
-			<name>openHAB repository</name>
-			<url>https://dl.bintray.com/openhab/mvn</url>
-		</repository>
-		-->
-		<repository>
-			<id>sympower-public</id>
-			<name>Sympower repository</name>
-			<url>https://extranet.sympower.net/nexus/repository/maven-public/</url>
-		</repository>
-	</repositories>
+  <repositories>
+    <!-- extra repository for org.openhab.nrjavaserial -->
+    <!--
+    <repository>
+      <id>openhab</id>
+      <name>openHAB repository</name>
+      <url>https://dl.bintray.com/openhab/mvn</url>
+    </repository>
+    -->
+    <repository>
+      <id>sympower-public</id>
+      <name>Sympower repository</name>
+      <url>https://extranet.sympower.net/nexus/repository/maven-public/</url>
+    </repository>
+  </repositories>
 
-	<!-- dependency versions here should match roughly the runtime environment of openHAB2 -->
-	<dependencies>
-		<dependency>
-			<groupId>org.openhab</groupId>
-			<artifactId>nrjavaserial</artifactId>
-			<version>3.15.0.OH2</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.13.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>2.0.13</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.17.0</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.19.0</version>
-			<scope>provided</scope>
-		</dependency>
+  <!-- dependency versions here should match roughly the runtime environment of openHAB2 -->
+  <dependencies>
+    <dependency>
+      <groupId>org.openhab</groupId>
+      <artifactId>nrjavaserial</artifactId>
+      <version>3.15.0.OH2</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.2</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.13</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.17.0</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.19.0</version>
+      <scope>provided</scope>
+    </dependency>
 
-	</dependencies>
+  </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>3.1.0</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>3.1.0</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.10.4</version>
-				<configuration>
-					<additionalOptions>-html5</additionalOptions>
-					<show>private</show>
-					<nohelp>true</nohelp>
-				</configuration>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-						<configuration>
-							<additionalparam>-Xdoclint:none</additionalparam>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.10.1</version>
-				<configuration>
-					<source>${maven.compiler.source}</source>
-					<target>${maven.compiler.target}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.22.2</version>
-				<configuration>
-					<forkCount>2C</forkCount>
-					<reuseForks>true</reuseForks>
-					<reportFormat>plain</reportFormat>
-					<trimStackTrace>false</trimStackTrace>
-					<!-- CircleCI build workaround -->
-					<useSystemClassLoader>false</useSystemClassLoader>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.maven.surefire</groupId>
-						<artifactId>surefire-junit4</artifactId>
-						<version>2.22.2</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>3.4.0</version>
-				<executions>
-					<execution>
-						<phase>initialize</phase>
-						<id>parse-version</id>
-						<goals>
-							<goal>parse-version</goal>
-						</goals>
-						<configuration>
-							<propertyPrefix>parsedVersion</propertyPrefix>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-release-plugin</artifactId>
-				<version>2.5.3</version>
-				<configuration>
-					<autoVersionSubmodules>true</autoVersionSubmodules>
-					<tagNameFormat>@{project.artifactId}-@{project.version}</tagNameFormat>
-					<useReleaseProfile>false</useReleaseProfile>
-					<releaseVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${parsedVersion.buildNumber}</releaseVersion>
-					<developmentVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${parsedVersion.nextBuildNumber}-SNAPSHOT</developmentVersion>
-					<!--
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.4</version>
+        <configuration>
+          <additionalOptions>-html5</additionalOptions>
+          <show>private</show>
+          <nohelp>true</nohelp>
+        </configuration>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+            <configuration>
+              <additionalparam>-Xdoclint:none</additionalparam>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.2</version>
+        <configuration>
+          <forkCount>2C</forkCount>
+          <reuseForks>true</reuseForks>
+          <reportFormat>plain</reportFormat>
+          <trimStackTrace>false</trimStackTrace>
+          <!-- CircleCI build workaround -->
+          <useSystemClassLoader>false</useSystemClassLoader>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.surefire</groupId>
+            <artifactId>surefire-junit4</artifactId>
+            <version>2.22.2</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.4.0</version>
+        <executions>
+          <execution>
+            <phase>initialize</phase>
+            <id>parse-version</id>
+            <goals>
+              <goal>parse-version</goal>
+            </goals>
+            <configuration>
+              <propertyPrefix>parsedVersion</propertyPrefix>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+        <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
+          <tagNameFormat>@{project.artifactId}-@{project.version}</tagNameFormat>
+          <useReleaseProfile>false</useReleaseProfile>
+          <releaseVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${parsedVersion.buildNumber}</releaseVersion>
+          <developmentVersion>${parsedVersion.majorVersion}.${parsedVersion.minorVersion}.${parsedVersion.incrementalVersion}-${parsedVersion.nextBuildNumber}-SNAPSHOT</developmentVersion>
+          <!--
             CircleCI will skip triggering a build for ALL commits that are
             pushed together if a commit message contains [skip ci].
             https://circleci.com/docs/2.0/skip-build/
@@ -184,132 +184,132 @@
             and the commit with just a new development version in pom.xml does
             not need to be released (avoid cycle).
           -->
-					<scmCommentPrefix xml:space="preserve">[skip ci] [maven-release-plugin] </scmCommentPrefix>
-				</configuration>
-			</plugin>
-		</plugins>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-dependency-plugin</artifactId>
-					<version>3.1.1</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-	</build>
+          <scmCommentPrefix xml:space="preserve">[skip ci] [maven-release-plugin] </scmCommentPrefix>
+        </configuration>
+      </plugin>
+    </plugins>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-dependency-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
-	<reporting>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>3.0.0</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>dependencies</report>
-							<report>project-team</report>
-							<report>mailing-list</report>
-							<report>issue-tracking</report>
-							<report>license</report>
-							<report>scm</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.1.1</version>
-				<configuration>
-					<show>public</show>
-				</configuration>
-			</plugin>
-		</plugins>
-	</reporting>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.0.0</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependencies</report>
+              <report>project-team</report>
+              <report>mailing-list</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>scm</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.1.1</version>
+        <configuration>
+          <show>public</show>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
 
-	<issueManagement>
-		<system>Github apge</system>
-		<url>https://github.com/openhab/jamod/issues</url>
-	</issueManagement>
+  <issueManagement>
+    <system>Github apge</system>
+    <url>https://github.com/openhab/jamod/issues</url>
+  </issueManagement>
 
-	<scm>
-		<url>https://github.com/sympower/jamod</url>
-		<connection>git@github.com:sympower/jamod.git</connection>
-		<developerConnection>scm:git:git@github.com:sympower/jamod.git</developerConnection>
-		<tag>1.2.3-6</tag>
-	</scm>
+  <scm>
+    <url>https://github.com/sympower/jamod</url>
+    <connection>git@github.com:sympower/jamod.git</connection>
+    <developerConnection>scm:git:git@github.com:sympower/jamod.git</developerConnection>
+    <tag>1.2.3-6</tag>
+  </scm>
 
-	<distributionManagement>
-		<repository>
-			<id>repository</id>
-			<name>Releases</name>
-			<url>${env.MAVEN_REPO_URL}/maven-releases</url>
-		</repository>
-		<snapshotRepository>
-			<id>repository</id>
-			<name>Snapshots</name>
-			<url>${env.MAVEN_REPO_URL}/maven-snapshots</url>
-		</snapshotRepository>
-	</distributionManagement>
+  <distributionManagement>
+    <repository>
+      <id>repository</id>
+      <name>Releases</name>
+      <url>${env.MAVEN_REPO_URL}/maven-releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>repository</id>
+      <name>Snapshots</name>
+      <url>${env.MAVEN_REPO_URL}/maven-snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
 
-	<!-- Original jamod developers as specified in http://jamod.sourceforge.net/ -->
-	<developers>
-		<developer>
-			<id>wimpi</id>
-			<name>Dieter Wimberger</name>
-			<email>wimpi at users.sourceforge.net</email>
-			<roles>
-				<role>Project Manager</role>
-				<role>Architect</role>
-				<role>Developer</role>
-			</roles>
-			<timezone>+2</timezone>
-		</developer>
-		<developer>
-			<id>jdcharlton</id>
-			<name>John Charlton</name>
-			<email>jdcharlton at users.sourceforge.net</email>
-			<roles>
-				<role>Developer</role>
-			</roles>
-			<timezone>-5</timezone>
-		</developer>
-	</developers>
+  <!-- Original jamod developers as specified in http://jamod.sourceforge.net/ -->
+  <developers>
+    <developer>
+      <id>wimpi</id>
+      <name>Dieter Wimberger</name>
+      <email>wimpi at users.sourceforge.net</email>
+      <roles>
+        <role>Project Manager</role>
+        <role>Architect</role>
+        <role>Developer</role>
+      </roles>
+      <timezone>+2</timezone>
+    </developer>
+    <developer>
+      <id>jdcharlton</id>
+      <name>John Charlton</name>
+      <email>jdcharlton at users.sourceforge.net</email>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>-5</timezone>
+    </developer>
+  </developers>
 
-	<!-- Original jamod contributors as specified in http://jamod.sourceforge.net/ -->
-	<contributors>
-		<contributor>
-			<name>Markus Kuespert</name>
-		</contributor>
-		<contributor>
-			<name>Matthew Lohbihler</name>
-		</contributor>
-		<contributor>
-			<name>Shane Harrison</name>
-		</contributor>
-	</contributors>
+  <!-- Original jamod contributors as specified in http://jamod.sourceforge.net/ -->
+  <contributors>
+    <contributor>
+      <name>Markus Kuespert</name>
+    </contributor>
+    <contributor>
+      <name>Matthew Lohbihler</name>
+    </contributor>
+    <contributor>
+      <name>Shane Harrison</name>
+    </contributor>
+  </contributors>
 
-	<profiles>
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.4</version>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+  <profiles>
+    <profile>
+      <id>release-sign-artifacts</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.4</version>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
