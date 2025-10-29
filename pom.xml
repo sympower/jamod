@@ -238,7 +238,7 @@
     <url>https://github.com/sympower/jamod</url>
     <connection>git@github.com:sympower/jamod.git</connection>
     <developerConnection>scm:git:git@github.com:sympower/jamod.git</developerConnection>
-    <tag>1.2.3-6</tag>
+    <tag>1.2.3-7</tag>
   </scm>
 
   <distributionManagement>
